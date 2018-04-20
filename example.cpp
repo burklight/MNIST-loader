@@ -7,6 +7,10 @@ int main()
 {
     vector<vector<vector<int> > > testImages = ReadTestImages();//  ReadImages("./mnist/t10k-images-idx3-ubyte");
     vector<vector<vector<int> > > trainImages = ReadTrainImages(); //ReadImages("./mnist/train-images-idx3-ubyte");
+    /* If you want the images not being in two values 0, 1:
+    vector<vector<vector<int> > > testImages = ReadTestImages();//  ReadImages("./mnist/t10k-images-idx3-ubyte");
+    vector<vector<vector<int> > > trainImages = ReadTrainImages(); //ReadImages("./mnist/train-images-idx3-ubyte");
+    */
     vector<int> testLabels = readTestLabels(); //ReadLabels("./mnist/t10k-labels-idx1-ubyte");
     vector<int> trainLabels = readTrainLabels(); //ReadLabels("./mnist/train-labels-idx1-ubyte");
 

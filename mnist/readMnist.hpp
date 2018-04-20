@@ -19,7 +19,7 @@ static vector<unsigned char> ReadAllBytes(char const* filename)
   return result;
 }
 
-static vector<vector<vector<int> > > ReadImages(char const* filename){
+static vector<vector<vector<int> > > ReadImages(char const* filename, bool asBinary = true){
 
   vector<unsigned char> result = ReadAllBytes(filename);
   int curByte = 0; // This will account for the current bytes
@@ -38,7 +38,8 @@ static vector<vector<vector<int> > > ReadImages(char const* filename){
   for (unsigned int x = 0; x < N; x++){
     for (unsigned int y = 0; y < h; y++){
       for (unsigned int z = 0; z < w; z++){
-        images[x][y][z] = (result[curByte++] == 0) ? 0 : 1; // Make sure it is 0 or 1
+        if (asBinary) images[x][y][z] = (result[curByte++] == 0) ? 0 : 1; // Make sure it is 0 or 1
+        else images[x][y][z] = (int) result[curByte++];
       }
     }
   }
@@ -46,7 +47,7 @@ static vector<vector<vector<int> > > ReadImages(char const* filename){
   return images;
 }
 
-static vector<int> ReadLabels(char const* filename){
+static vector<int> ReadLabels(char const* filename, bool asBinary = true){
 
   vector<unsigned char> result = ReadAllBytes(filename);
   int curByte = 0; // This will account for the current bytes
@@ -64,12 +65,12 @@ static vector<int> ReadLabels(char const* filename){
   return labels;
 }
 
-static vector<vector<vector<int> > > ReadTestImages(){
-  return ReadImages("./mnist/t10k-images-idx3-ubyte");
+static vector<vector<vector<int> > > ReadTestImages(bool asBinary = true){
+  return ReadImages("./mnist/t10k-images-idx3-ubyte", asBinary);
 }
 
-static vector<vector<vector<int> > > ReadTrainImages(){
-  return ReadImages("./mnist/train-images-idx3-ubyte");
+static vector<vector<vector<int> > > ReadTrainImages(bool asBinary = true){
+  return ReadImages("./mnist/train-images-idx3-ubyte", asBinary);
 }
 
 static vector<int> readTestLabels(){
