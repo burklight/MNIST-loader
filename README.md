@@ -8,6 +8,8 @@ The folder contains:
 
 An example on how to use this loader can be found in the [example.cpp](https://github.com/burklight/MNIST-loader/blob/master/example.cpp) file.
 
-** Note the images will be a 3D vector of integers with 0's on the non drawn parts of the image and 1's on the other places.
+** Note the images will be a 3D vector of integers with:
+   * 0's on the non drawn parts of the image and 1's on the other places by default.
+   * Their integer values if false is given to the readTestImages()/readTrainImages(). E.g., ReadTestImages(false), ReadTrainImages(false).
 
 ** Note the labels will be a 1D vector of integers with the label being the number corresponding to de digit.
